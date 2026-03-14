@@ -41,7 +41,10 @@ jobs:
         event-type: Source Code Update
 
     - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v2
+      uses: ophub/delete-releases-workflows@main
       with:
-        retain_days: 2
-        keep_minimum_runs: 0
+        delete_releases: false
+        # releases_keep_latest: 5
+        delete_workflows: true
+        workflows_keep_day: 7
+        gh_token: ${{ secrets.GITHUB_TOKEN }}

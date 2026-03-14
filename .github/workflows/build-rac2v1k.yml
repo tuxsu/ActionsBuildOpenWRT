@@ -217,16 +217,19 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v2
+      uses: ophub/delete-releases-workflows@main
       with:
-        retain_days: 1
-        keep_minimum_runs: 3
+        delete_releases: false
+        # releases_keep_latest: 5
+        delete_workflows: true
+        workflows_keep_day: 7
+        gh_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Remove old Releases
       uses: ophub/delete-releases-workflows@main
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         delete_releases: true
-        releases_keep_latest: 3
+        releases_keep_latest: 5
         delete_tags: true
         gh_token: ${{ secrets.GITHUB_TOKEN }}
