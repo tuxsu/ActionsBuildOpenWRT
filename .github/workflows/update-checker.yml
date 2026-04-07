@@ -39,12 +39,3 @@ jobs:
       with:
         token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
         event-type: Source Code Update
-
-    - name: Delete workflow runs
-      uses: ophub/delete-releases-workflows@main
-      with:
-        delete_releases: false
-        # releases_keep_latest: 5
-        delete_workflows: true
-        workflows_keep_day: 7
-        gh_token: ${{ secrets.GITHUB_TOKEN }}
